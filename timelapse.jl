@@ -27,9 +27,9 @@ function findimages(data, t)
 end
 
 
-noframes=try int(ARGS[0]) catch "" 100 end
-imagedir=try ARGS[1] catch "" "./images" end
-outdir=try ARGS[2] catch "" "./images-out" end
+noframes=try int(ARGS[1]) catch "" 100 end
+imagedir=try ARGS[2] catch "" "./images" end
+outdir=try ARGS[3] catch "" "./images-out" end
 
 info("Reading images from directory [$imagedir]")
 images=sort(readdir(imagedir))
