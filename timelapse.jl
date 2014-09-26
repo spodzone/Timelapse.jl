@@ -43,12 +43,16 @@ tstart=minimum(imagetimes)
 tend=maximum(imagetimes)
 
 noimages=length(images)
+oldleft=-1
 for i in 1:noframes
   desiredtime=tstart+(tend-tstart)*i/noframes
   left,right,prop=findimages(filedata, desiredtime)
   info("  frame $i / $noframes  left=$left, right=$right, prop=$prop")
-  img1=imread(images[left])
-  img2=imread(images[right])
+  if left!=oldleft
+    img1=imread(images[left])
+    img2=imread(images[right])
+    oldleft=left
+  end
   oimg=imageinterpolate(img1, img2, prop)
   ofile=@sprintf("%s/image-%05d.jpg", outdir, i)
   imwrite(oimg, ofile)
