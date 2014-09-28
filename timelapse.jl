@@ -1,6 +1,10 @@
 #!/usr/bin/env julia
 
-using Images, Color, FixedPointNumbers, ImageView
+info("Starting")
+
+info("Loading modules")
+
+using Images, Color, FixedPointNumbers
 
 function imageinterpolate(img1, img2, prop=0.5)
   "Return a new image interpolated prop proportion of the way from img1 to img2"
@@ -27,6 +31,7 @@ function findimages(data, t)
 end
 
 
+info("Sorting parameters")
 noframes=try int(ARGS[1]) catch "" 100 end
 imagedir=try ARGS[2] catch "" "./images" end
 outdir=try ARGS[3] catch "" "./images-out" end
