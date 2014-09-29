@@ -26,7 +26,7 @@ Requirements
 
    * familiariry with a Linux, Unix or Cygwin environment
    * [Julia](http://julialang.org/)
-   * Pkg.add("Images")
+   * `Pkg.add("Images")`
    * optional, but very useful: exiv2
 
 It will work with an image format that the Images module understands - testing uses simple JPEGs.
@@ -37,10 +37,11 @@ Usage
 
    * Create and populate an input directory, such as `./images-in/*.jpg`
    * use `exiv2 -T rename images-in/*jpg` to set the file modification times
-   * mkdir images-out
-   * ./timelapse.jl 1800 images-in images-out
+   * `mkdir images-out`
+   * `./timelapse.jl 1800 images-in images-out`
    * Create a movie using `ffmpeg -f image2 -i images-out/image-%05d.jpg -sameq -r 50 timelapse.flv`
 
+A couple of sample images are included - by running the interpolation you'll see a fade between colour and desaturated+vignetted versions.
 
 ToDo
 ----
