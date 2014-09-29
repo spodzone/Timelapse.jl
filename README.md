@@ -43,6 +43,16 @@ Usage
 
 A couple of sample images are included - by running the interpolation you'll see a fade between colour and desaturated+vignetted versions.
 
+Performance
+-----------
+
+Representative example - a baseline, but your mileage will vary:
+
+   * Intel Core i7 CPU at 2.2GHz
+   * input: 95 JPEG images (sRGB, 1080p)
+   * output: 1000 JPEGs (similar)
+   * time taken: 3.5 minutes
+
 ToDo
 ----
 
