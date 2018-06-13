@@ -4,7 +4,8 @@ info("Starting")
 
 info("Loading modules")
 
-using Images, Color, FixedPointNumbers
+#using Graphics, Images, Color, FixedPointNumbers
+using Graphics, Images, FixedPointNumbers
 
 function imageinterpolate(img1, img2, prop=0.5)
   "Return a new image interpolated prop proportion of the way from img1 to img2"
@@ -53,11 +54,8 @@ for i in 1:noframes
   desiredtime=tstart+(tend-tstart)*i/noframes
   left,right,prop=findimages(filedata, desiredtime)
   info("  frame $i / $noframes  left=$left, right=$right, prop=$prop")
-  if left!=oldleft
-    img1=imread(images[left])
-    img2=imread(images[right])
-    oldleft=left
-  end
+  img1=imread(images[left])
+  img2=imread(images[right])
   oimg=imageinterpolate(img1, img2, prop)
   ofile=@sprintf("%s/image-%05d.jpg", outdir, i)
   imwrite(oimg, ofile)
