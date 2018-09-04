@@ -44,7 +44,7 @@ tlog("Saving")
 #info("  EXR")
 #save("output.exr", rolling)
 tlog("  PNG")
-rolling=RGB{N0f8}.(rolling)
+rolling=RGB{N0f16}.(rolling)
 
 save("output.png", rolling)
 tlog("  TIFF")
