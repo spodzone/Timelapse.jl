@@ -1,8 +1,8 @@
 #!/usr/bin/env julia
 
-info("Starting")
+@info("Starting")
 
-info("Loading modules")
+@info("Loading modules")
 
 #using Graphics, Images, Color, FixedPointNumbers
 using Graphics, Images, FixedPointNumbers
@@ -32,18 +32,18 @@ function findimages(data, t)
 end
 
 
-info("Sorting parameters")
+@info("Sorting parameters")
 noframes=try int(ARGS[1]) catch "" 100 end
 imagedir=try ARGS[2] catch "" "./images" end
 outdir=try ARGS[3] catch "" "./images-out" end
 
-info("Reading images from directory [$imagedir]")
+@info("Reading images from directory [$imagedir]")
 images=sort(readdir(imagedir))
 images=map(x->"$imagedir/$x", images)
 imagetimes = map(x->stat(x).mtime, images)
 filedata=sort([ (imagetimes[i], images[i]) for i in 1:length(images) ])
 
-info("Interpolating $noframes frames")
+@info("Interpolating $noframes frames")
 
 tstart=minimum(imagetimes)
 tend=maximum(imagetimes)
@@ -61,4 +61,4 @@ for i in 1:noframes
   imwrite(oimg, ofile)
 end
 
-info("All done")
+@info("All done")
