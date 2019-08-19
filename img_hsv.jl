@@ -14,6 +14,7 @@ using Images, Statistics
 imgs=[ imresize(load(x), ratio=0.5) for x in ARGS ]
 
 @info("Joining arrays")
+imgs=[ reshape(img, length(img), 1) for img in imgs ]
 img=foldr( (a,b)->cat(a,b,dims=1), imgs)
 hsv=HSV{Float32}.(img)
 
