@@ -12,7 +12,7 @@ end
 function adaptive(fname)
     ofname=replace(fname, r"(\..*)" => s"-clahe\1")
     src=load(ARGS[1])
-    img = clahe(src, 128, xblocks=8, yblocks=8, clip=3)
+    img = clahe(src, 256, xblocks=8, yblocks=8, clip=3)
     save(ofname, img)
 end
 
