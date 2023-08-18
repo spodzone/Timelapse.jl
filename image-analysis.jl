@@ -11,8 +11,8 @@ function tlog(instr)
   println("[$nowstr] $instr")
 end
 
-function mkstats(channel)
-  tlog("Analyzing channel of type " * string(typeof(channel)))
+function mkstats(channel, name="")
+  tlog("Analyzing channel $name of type " * string(typeof(channel)))
   ret = Dict()
   mn = mean(channel)
   ret["Mean"] = mn
@@ -51,15 +51,20 @@ function analyze(instr)
   channelnames = ["L", "H", "S", "V"]
   channelvalues = [L, H, S, V]
   channels = Dict(zip(channelnames, channelvalues))
-  Threads.@threads for k in channelnames
-    ret[k] = mkstats(channels[k])
+  pic = L = H = S = V = channelvalues = []
+  GC.gc()
+  for k in channelnames
+    ret[k] = mkstats(channels[k], k)
   end
+  GC.gc()
   return ret
 end
 
 function main()
-  ret = pmap(analyze, ARGS)
+  ret = asyncmap(analyze, ARGS, ntasks=4)
+  println()
   println(JSON.json(ret, 4))
 end
 
 main()
+
